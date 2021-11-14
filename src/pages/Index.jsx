@@ -34,6 +34,7 @@ const Index = ({ cheeses, createCheese }) => {
             <h1>{singleCheese.name}</h1>
           </Link>
           <img src={singleCheese.image} alt={singleCheese.name} width={200} />
+          <hr />
           <h3>Country of origin: {singleCheese.countryOfOrigin}</h3>
         </div>
       ))
@@ -47,7 +48,7 @@ const Index = ({ cheeses, createCheese }) => {
 
   return (
     <section>
-      <form onSubmit={handleSubmit}>
+      <form id="createForm" onSubmit={handleSubmit}>
         <input
           type="text"
           value={newForm.name}

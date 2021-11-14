@@ -14,6 +14,12 @@ $contrastcolor: white;
   background-color: $contrastcolor;
 }
 
+@mixin sticky-top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 
 ////////////////////////////////
 // Header
@@ -22,12 +28,12 @@ nav {
   @include white-text-black-bg;
   display: flex;
   justify-content: flex-start;
-  position: fixed;
-  top: 0;
-  width: 100%;
+  @include sticky-top;
 
   a {
     @include white-text-black-bg;
+    text-decoration: none;
+    font-weight: bold;
     div {
       margin: 10px;
       font-size: large;
@@ -40,7 +46,7 @@ nav {
 // Main
 ////////////////////////////////
 .main {
-  margin-top: 50px;
+  margin-top: 110px;
 }
 
 
@@ -88,4 +94,29 @@ img {
   height: 300px;
   border-radius: 90px;
   object-fit: cover;
+}
+
+
+////////////////////////////////
+// Misc
+////////////////////////////////
+#createForm {
+  @include sticky-top;
+  top: 40px;
+  background-color: lightgray;
+}
+
+.singleCheese {
+  width: min-content;
+  margin: 20px auto;
+  padding: 0.5em 2.5em;
+  background-color: lightgray;
+  border-radius: 10px;
+  border: 1px solid black;
+  
+  a {
+    width: min-content;
+    margin: auto;
+    margin-top: 10px;
+  }
 }
