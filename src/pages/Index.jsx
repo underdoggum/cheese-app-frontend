@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom";
 
 
-const Index = props => {
+const Index = ({ cheeses, createCheese }) => {
   // state to hold form data
   const [newForm, setNewForm] = useState({
     name: "",
@@ -17,7 +17,7 @@ const Index = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    props.createCheese(newForm);
+    createCheese(newForm);
     setNewForm({
       name: "",
       image: "",
@@ -28,12 +28,12 @@ const Index = props => {
   // logic for determining if the API data has loaded
   const loaded = () => {
     return (
-      props.cheese.map(singleCheese => (
+      cheeses.map(singleCheese => (
         <div key={singleCheese._id} className="singleCheese">
           <Link to={`/cheese/${singleCheese._id}`}>
             <h1>{singleCheese.name}</h1>
           </Link>
-          <img src={singleCheese.image} alt={singleCheese.name} width={300} />
+          <img src={singleCheese.image} alt={singleCheese.name} width={200} />
           <h3>Country of origin: {singleCheese.countryOfOrigin}</h3>
         </div>
       ))
@@ -71,7 +71,7 @@ const Index = props => {
         />
         <input type="submit" value="Create cheese" />
       </form>
-      {props.cheese ? loaded() : loading()}
+      {cheeses ? loaded() : loading()}
     </section>
   );
 }

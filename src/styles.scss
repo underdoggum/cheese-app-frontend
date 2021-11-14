@@ -22,6 +22,9 @@ nav {
   @include white-text-black-bg;
   display: flex;
   justify-content: flex-start;
+  position: fixed;
+  top: 0;
+  width: 100%;
 
   a {
     @include white-text-black-bg;
@@ -30,4 +33,12 @@ nav {
       font-size: large;
     }
   }
+}
+
+
+////////////////////////////////
+// Main
+////////////////////////////////
+.main {
+  margin-top: 50px;
 }

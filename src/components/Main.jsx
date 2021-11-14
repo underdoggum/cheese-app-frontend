@@ -6,14 +6,14 @@ import Show from "../pages/Show";
 
 const Main = props => {
 
-  const [cheese, setCheese] = useState(null);
+  const [cheeses, setCheeses] = useState(null);
 
-  const URL = "https://nn-cheese-app.herokuapp.com/cheese";
+  const URL = "https://nn-cheese-app.herokuapp.com/cheese/";
 
   const getCheeses = async () => {
     const response = await fetch(URL);
     const data = await response.json();
-    setCheese(data);
+    setCheeses(data);
   };
 
   const createCheese = async cheese => {
@@ -21,7 +21,7 @@ const Main = props => {
     await fetch(URL, {
       method: "post",
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(cheese),
     });
@@ -29,14 +29,37 @@ const Main = props => {
     getCheeses();
   };
 
+  const updateCheese = async (cheese, id) => {
+    await fetch(URL + id, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cheese)
+    });
+    getCheeses();
+  };
+
+  const deleteCheese = async id => {
+    await fetch(URL + id, {
+      method: "delete",
+    });
+    getCheeses();
+  }
+
   useEffect(() => getCheeses(), []);
 
 
   return (
-    <main>
+    <main className="main">
       <Routes>
-        <Route path="/" element={<Index cheese={cheese} createCheese={createCheese} />} />
-        <Route path="/cheese/:id" element={<Show />} />
+        <Route path="/" element={<Index cheeses={cheeses} createCheese={createCheese} />} />
+        <Route path="/cheese/:id" element={
+          <Show
+            cheeses={cheeses}
+            updateCheese={updateCheese}
+            deleteCheese={deleteCheese}
+          />} />
       </Routes>
     </main>
   )
