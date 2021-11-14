@@ -23,6 +23,11 @@ const Show = ({ cheeses, updateCheese, deleteCheese }) => {
     navigate("/");
   };
 
+  const removeCheese = () => {
+    deleteCheese(cheese._id);
+    navigate("/");
+  }
+
   const form = (
     <form onSubmit={handleSubmit}>
       <input
@@ -55,6 +60,9 @@ const Show = ({ cheeses, updateCheese, deleteCheese }) => {
         <h1>{cheese.name}</h1>
         <h3>Country of origin: {cheese.countryOfOrigin}</h3>
         <img src={cheese.image} alt={cheese.name} width={200} />
+        <button id="delete" onClick={removeCheese}>
+          DELETE
+        </button>
         {form}
       </div>
     )
